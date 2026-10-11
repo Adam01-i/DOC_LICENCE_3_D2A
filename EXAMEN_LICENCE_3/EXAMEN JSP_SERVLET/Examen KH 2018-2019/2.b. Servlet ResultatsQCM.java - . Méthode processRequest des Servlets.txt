@@ -1,0 +1,35 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ResultatsQCM extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String epreuve = request.getParameter("epreuve");
+            QuestionReponses qr = new QuestionReponses();
+            int nombreQuestions = qr.getNombreQuestion(epreuve);
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html><head><title>Résultats QCM</title></head><body>");
+            out.println("<h1>Résultats pour l'épreuve : " + epreuve + "</h1>");
+
+            for (int i = 0; i < nombreQuestions; i++) {
+                String question = qr.getQuestion(epreuve, i);
+                String bonneReponse = qr.getReponse(epreuve, i);
+                String userReponse = request.getParameter("reponse" + i);
+
+                out.println("<p><strong>Question " + (i + 1) + " :</strong> " + question + "</p>");
+                out.println("<p>Votre réponse : " + (userReponse != null ? userReponse : "Aucune réponse") + "</p>");
+                out.println("<p>Bonne réponse : " + bonneReponse + "</p>");
+                out.println("<hr>");
+            }
+
+            out.println("</body></html>");
+        }
+    }
+}

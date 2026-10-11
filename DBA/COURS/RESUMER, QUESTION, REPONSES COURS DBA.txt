@@ -1,0 +1,120 @@
+Résumé des concepts clés :
+1. Architecture d’Oracle
+Fichiers de contrôle : Contiennent les métadonnées de la base, notamment les noms des fichiers et le nom de la base. Une base doit avoir au moins un fichier de contrôle.
+Redo logs : Enregistre toutes les modifications effectuées sur la base. Utile pour la restauration.
+Tablespaces : Contiennent des segments (regroupements logiques de données) constitués d'extents (groupes de blocs consécutifs).
+Mémoire de l’instance : SGA (System Global Area) et PGA (Program Global Area) pour gérer les ressources en mémoire.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Démarrage et arrêt d’une base de données
+États possibles :
+NOMOUNT : L’instance démarre, mais aucun fichier de la base n’est encore associé.
+MOUNT : Les fichiers de contrôle sont accessibles. La base est prête pour des opérations de maintenance.
+OPEN : La base est totalement opérationnelle et accessible aux utilisateurs.
+Commandes associées :
+Démarrage :
+STARTUP NOMOUNT;
+ALTER DATABASE MOUNT;
+ALTER DATABASE OPEN;
+Arrêt :
+SHUTDOWN NORMAL; -- Arrêt propre
+SHUTDOWN IMMEDIATE; -- Interrompt les transactions en cours
+SHUTDOWN ABORT; -- Arrêt forcé
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Gestion des utilisateurs et des privilèges
+Création d’un utilisateur :
+CREATE USER nom IDENTIFIED BY motdepasse
+DEFAULT TABLESPACE nom_tablespace
+TEMPORARY TABLESPACE temp_tablespace;
+Attribution de privilèges :
+GRANT CREATE SESSION, CREATE TABLE TO nom_utilisateur;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4. Ajout de fichiers et de tablespaces
+Ajouter un fichier de données :
+ALTER TABLESPACE nom_tablespace ADD DATAFILE 'chemin/nom_fichier.dbf' SIZE 50M;
+Créer un tablespace :
+CREATE TABLESPACE nom
+DATAFILE 'chemin/nom_fichier.dbf' SIZE 50M;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5. Archivage et récupération
+Changer le mode de la base :
+ALTER DATABASE ARCHIVELOG;
+ALTER DATABASE OPEN;
+Vérification :
+ARCHIVE LOG LIST;
+Questions d'examen potentielles et réponses :
+A. Questions sur les états de la base
+Quels sont les trois états d'une base Oracle lors du démarrage ?
+
+Réponse :
+NOMOUNT : Instance démarrée, fichiers non associés.
+MOUNT : Fichiers de contrôle accessibles, base en mode maintenance.
+OPEN : Base entièrement accessible.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Quelle commande ouvre une base montée ?
+
+Réponse :
+ALTER DATABASE OPEN;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Différence entre SHUTDOWN IMMEDIATE et SHUTDOWN ABORT ?
+
+Réponse :
+IMMEDIATE : Termine les transactions en cours proprement.
+ABORT : Arrête immédiatement, mais nécessite une récupération au redémarrage.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+B. Questions sur les fichiers et tablespaces
+Comment ajouter un fichier de données à un tablespace ?
+
+Réponse :
+ALTER TABLESPACE nom_tablespace ADD DATAFILE 'chemin/nom_fichier.dbf' SIZE 100M;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Quelle commande crée un nouveau tablespace ?
+
+Réponse :
+CREATE TABLESPACE nom
+DATAFILE 'chemin/nom_fichier.dbf' SIZE 50M;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Que contient un fichier de contrôle ?
+
+Réponse :
+Noms des fichiers de données et de redo logs.
+Nom de la base de données.
+Horodatage de la création de la base.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+C. Questions sur les utilisateurs et privilèges
+Comment créer un nouvel utilisateur dans Oracle ?
+
+Réponse :
+CREATE USER nom IDENTIFIED BY motdepasse
+DEFAULT TABLESPACE nom_tablespace
+TEMPORARY TABLESPACE temp_tablespace;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Comment attribuer un rôle DBA à un utilisateur ?
+
+Réponse :
+GRANT DBA TO nom_utilisateur;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Différence entre un privilège système et un privilège objet ?
+
+Réponse :
+Privilège système : Permet d’exécuter des actions sur la base, comme CREATE TABLE.
+Privilège objet : Permet d’exécuter des actions sur un objet spécifique, comme une table.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+D. Questions sur l’archivage et la récupération
+Comment activer l’archivage des redo logs ?
+
+Réponse :
+SHUTDOWN IMMEDIATE;
+STARTUP MOUNT;
+ALTER DATABASE ARCHIVELOG;
+ALTER DATABASE OPEN;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Comment vérifier si l’archivage est activé ?
+
+Réponse :
+ARCHIVE LOG LIST;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+À quoi servent les redo logs ?
+
+Réponse :
+Enregistrer toutes les modifications de la base.
+Récupérer les données en cas de panne.

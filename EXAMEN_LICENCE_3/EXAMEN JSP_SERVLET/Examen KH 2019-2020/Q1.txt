@@ -1,0 +1,51 @@
+Pour afficher la valeur d'un paramètre de requête nommé `action` dans un servlet Java, vous devez d'abord récupérer la valeur du paramètre à partir de l'objet `HttpServletRequest`. Voici un exemple d'implémentation :
+
+```java
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/monServlet")
+public class MonServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Récupérer le paramètre "action"
+        String action = request.getParameter("action");
+
+        // Configurer la réponse
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+
+        // Afficher la valeur de "action"
+        response.getWriter().println("<html><body>");
+        response.getWriter().println("<h1>Valeur du paramètre 'action': " + action + "</h1>");
+        response.getWriter().println("</body></html>");
+    }
+}
+```
+
+### Explications des instructions :
+
+1. **Importations nécessaires** : Les classes nécessaires pour créer un servlet sont importées.
+  
+2. **Annotation @WebServlet** : Cela permet de définir l'URL à laquelle le servlet sera accessible (dans cet exemple, `/monServlet`).
+
+3. **Méthode doGet** : Cette méthode est appelée lorsque le servlet reçoit une requête HTTP GET. Vous pouvez également implémenter `doPost` si vous souhaitez gérer les requêtes POST.
+
+4. **Récupération du paramètre** : La méthode `request.getParameter("action")` récupère la valeur du paramètre `action` passé dans la requête.
+
+5. **Configuration de la réponse** : La réponse est configurée pour être en HTML et pour utiliser l'encodage UTF-8.
+
+6. **Affichage de la valeur** : La valeur de `action` est ensuite affichée dans le corps de la réponse HTML.
+
+### Comment utiliser :
+
+Pour tester ce servlet, vous pouvez faire une requête HTTP GET à l'URL correspondante en ajoutant le paramètre `action` comme ceci :
+
+```
+http://localhost:8080/monServlet?action=valeurSouhaitee
+```
+
+Cela déclenchera le servlet et affichera la valeur du paramètre `action` dans le navigateur.

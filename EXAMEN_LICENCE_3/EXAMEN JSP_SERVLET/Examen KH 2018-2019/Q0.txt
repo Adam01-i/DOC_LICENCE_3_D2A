@@ -1,0 +1,172 @@
+Voici une solution pour créer une application QCM en ligne en utilisant le modèle MVC et les spécifications que vous avez fournies.
+
+### 1. Code de la page `accueil.html`
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil QCM</title>
+</head>
+<body>
+    <h1>Choisissez votre épreuve de QCM</h1>
+    <form action="QCM" method="post">
+        <label for="epreuve">Épreuve :</label>
+        <select name="epreuve" id="epreuve">
+            <option value="Réseaux">Réseaux</option>
+            <option value="SGBD">SGBD</option>
+            <option value="Algèbre">Algèbre</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Commencer">
+    </form>
+</body>
+</html>
+```
+
+### 2. Code des servlets
+
+#### Servlet `QCM.java`
+
+```java
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/QCM")
+public class QCM extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String epreuve = request.getParameter("epreuve");
+        QuestionReponses qr = new QuestionReponses();
+        
+        if (epreuve.equals("Algèbre")) {
+            response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+            response.getWriter().write("Page en construction");
+            return;
+        }
+
+        int nombreQuestions = qr.getNombreQuestion(epreuve);
+        request.setAttribute("epreuve", epreuve);
+        request.setAttribute("nombreQuestions", nombreQuestions);
+        request.setAttribute("questionReponses", qr);
+        request.getRequestDispatcher("/qcm.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+}
+```
+
+#### Servlet `ResultatsQCM.java`
+
+```java
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/ResultatsQCM")
+public class ResultatsQCM extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String epreuve = request.getParameter("epreuve");
+        QuestionReponses qr = new QuestionReponses();
+        int nombreQuestions = qr.getNombreQuestion(epreuve);
+        StringBuilder resultats = new StringBuilder();
+
+        for (int i = 0; i < nombreQuestions; i++) {
+            String reponseUtilisateur = request.getParameter("reponse" + i);
+            String bonneReponse = qr.getReponse(epreuve, i);
+            resultats.append("Question: ")
+                      .append(qr.getQuestion(epreuve, i))
+                      .append("<br>Votre réponse: ")
+                      .append(reponseUtilisateur)
+                      .append("<br>Bonne réponse: ")
+                      .append(bonneReponse)
+                      .append("<br><br>");
+        }
+
+        request.setAttribute("resultats", resultats.toString());
+        request.getRequestDispatcher("/resultats.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+}
+```
+
+### 3. Pages JSP
+
+#### `qcm.jsp`
+
+Cette page sera utilisée pour afficher les questions et recueillir les réponses de l'utilisateur.
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
+<html>
+<head>
+    <title>QCM - <%= request.getAttribute("epreuve") %></title>
+</head>
+<body>
+    <h1>QCM - <%= request.getAttribute("epreuve") %></h1>
+    <form action="ResultatsQCM" method="post">
+        <%
+            QuestionReponses qr = (QuestionReponses) request.getAttribute("questionReponses");
+            int nombreQuestions = (Integer) request.getAttribute("nombreQuestions");
+            for (int i = 0; i < nombreQuestions; i++) {
+                String question = qr.getQuestion((String) request.getAttribute("epreuve"), i);
+                out.println("<p>" + question + "</p>");
+                out.println("<input type='text' name='reponse" + i + "'/>");
+            }
+        %>
+        <input type="hidden" name="epreuve" value="<%= request.getAttribute("epreuve") %>">
+        <input type="submit" value="Valider">
+    </form>
+</body>
+</html>
+```
+
+#### `resultats.jsp`
+
+Cette page affichera les résultats du QCM.
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Résultats QCM</title>
+</head>
+<body>
+    <h1>Résultats</h1>
+    <%= request.getAttribute("resultats") %>
+    <a href="accueil.html">Retour à l'accueil</a>
+</body>
+</html>
+```
+
+### Conclusion
+
+Avec ces codes, vous avez une application QCM qui permet de choisir une épreuve, de répondre aux questions et d'afficher les résultats. Le code gère également le cas où l'épreuve "Algèbre" n'est pas encore disponible en retournant un code de statut 501 avec un message approprié.
+
+
+
+
+
+
+
+

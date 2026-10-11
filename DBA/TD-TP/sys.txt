@@ -1,0 +1,186 @@
+Microsoft Windows [version 10.0.19045.5131]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\T490>sqlplus /nolog
+
+SQL*Plus: Release 11.2.0.2.0 Production on Jeu. DÚc. 5 10:43:21 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system /as sysdba
+Enter password:
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> create user aicha identified by passer;
+
+User created.
+
+SQL> grant connect to aicha
+  2  ;
+
+Grant succeeded.
+
+SQL> grant resource to aicha;
+
+Grant succeeded.
+
+SQL> select * from aicha.client;
+
+no rows selected
+
+SQL> select * from aicha.client;
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         1 Diop                 Ali
+Bambey
+
+         2 Ba                   Sydi
+Tamba
+
+         3 Ka                   Amy
+Louga
+
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         4 Ly                   Rama
+Dakar
+
+         5 Faye                 Papa
+Dakar
+
+
+SQL> update client set adresse='Sandiara' where numcl=5;
+update client set adresse='Sandiara' where numcl=5
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> update aicha.client set adresse='Sandiara' where numcl=5;
+
+1 row updated.
+
+SQL> select * from aicha.client;
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         1 Diop                 Ali
+Bambey
+
+         2 Ba                   Sydi
+Tamba
+
+         3 Ka                   Amy
+Louga
+
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         4 Ly                   Rama
+Dakar
+
+         5 Faye                 Papa
+Sandiara
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from aicha.client;
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         1 Diop                 Ali
+Bambey
+
+         2 Ba                   Sydi
+Tamba
+
+         3 Ka                   Amy
+Louga
+
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         4 Ly                   Rama
+Dakar
+
+         5 Faye                 Papa
+Sandiara
+
+
+SQL> select * from aicha.client for update;
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         1 Diop                 Ali
+Bambey
+
+         2 Ba                   Sydi
+Tamba
+
+         3 Ka                   Amy
+Louga
+
+
+     NUMCL NOM                  PRENOM
+---------- -------------------- --------------------
+ADRESSE
+------------------------------
+         4 Ly                   Rama
+Dakar
+
+         5 Faye                 Papa
+Sandiara
+
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> desc aicha.client;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NUMCL                                     NOT NULL NUMBER(38)
+ NOM                                                VARCHAR2(20)
+ PRENOM                                             VARCHAR2(20)
+ ADRESSE                                            VARCHAR2(30)
+
+SQL> desc aicha.commande;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NUMCOM                                    NOT NULL NUMBER(38)
+ DATECOM                                            DATE
+ NUMCL                                              NUMBER(38)
+
+SQL> desc aicha.produit;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDPRODUIT                                 NOT NULL NUMBER(38)
+ NOMPRODUIT                                         VARCHAR2(20)
+
+SQL> desc aicha.ligne_com;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NUMCOM                                    NOT NULL NUMBER(38)
+ IDPRODUIT                                 NOT NULL NUMBER(38)
+ QUANTITE                                           NUMBER(38)
+

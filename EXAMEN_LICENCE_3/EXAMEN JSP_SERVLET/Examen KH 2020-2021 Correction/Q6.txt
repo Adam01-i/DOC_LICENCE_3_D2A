@@ -1,0 +1,41 @@
+Il semble que vous ayez copié un extrait de code Java, probablement d'une servlet ou d'une page JSP (JavaServer Pages), mais avec des espaces ajoutés de manière aléatoire dans les mots. Cela rend le code difficile à lire. Voici une version corrigée :
+
+```java
+String identification = request.getHeader("Authorization");
+request.setAttribute("user", identification);
+request.getRequestDispatcher("infos.jsp").forward(request, response);
+<%
+String user = (String) request.getAttribute("user");
+out.println(user != null ? user : " ");
+%>
+```
+
+### Explication du code :
+
+1. **Récupération de l'en-tête Authorization :**
+   ```java
+   String identification = request.getHeader("Authorization");
+   ```
+   Cela récupère la valeur de l'en-tête HTTP "Authorization" de la requête. Cette valeur est généralement utilisée pour l'authentification.
+
+2. **Stockage de l'identification dans une requête :**
+   ```java
+   request.setAttribute("user", identification);
+   ```
+   Ici, l'identification est stockée dans les attributs de la requête sous le nom "user". Cela permet de transmettre cette information à la page JSP suivante.
+
+3. **Redirection vers une autre page :**
+   ```java
+   request.getRequestDispatcher("infos.jsp").forward(request, response);
+   ```
+   Cela redirige la requête vers une autre page JSP appelée "infos.jsp", tout en passant la requête et la réponse.
+
+4. **Récupération de l'utilisateur dans la JSP :**
+   ```jsp
+   String user = (String) request.getAttribute("user");
+   out.println(user != null ? user : " ");
+   ```
+   Dans la page JSP, le code récupère l'attribut "user" de la requête. Si cet attribut n'est pas nul, il l'affiche ; sinon, il affiche un espace vide.
+
+### En résumé :
+Ce code récupère l'identifiant d'utilisateur à partir de l'en-tête de la requête, le stocke dans la requête pour l'utiliser dans une autre page JSP, puis affiche cet identifiant dans la page JSP.

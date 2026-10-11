@@ -1,0 +1,38 @@
+Pour assigner le rôle "admin" à un utilisateur dans une session à l'aide d'un servlet Java, vous devez suivre ces étapes :
+
+1. **Récupérer l'objet `HttpSession`** : Vous devez d'abord obtenir la session HTTP de l'utilisateur.
+
+2. **Définir un attribut pour le rôle** : Utilisez la méthode `setAttribute` de l'objet `HttpSession` pour stocker le rôle "admin".
+
+Voici un exemple de code qui montre comment faire cela dans un servlet :
+
+```java
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
+public class AdminServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        // Récupérer la session de l'utilisateur
+        HttpSession session = request.getSession();
+
+        // Définir le rôle "admin" dans la session
+        session.setAttribute("role", "admin");
+
+        // Rediriger ou répondre selon les besoins
+        response.getWriter().println("Rôle 'admin' a été ajouté à la session.");
+    }
+}
+```
+
+### Explications des étapes :
+- **Récupération de la session** : `request.getSession()` crée une nouvelle session si aucune session existante n'est trouvée. Si une session existe déjà, elle est retournée.
+- **Définition de l'attribut** : `session.setAttribute("role", "admin")` stocke le rôle "admin" dans la session, où "role" est la clé que vous pouvez utiliser plus tard pour récupérer cette valeur.
+- **Réponse** : Dans cet exemple, une réponse simple est envoyée à l'utilisateur confirmant que le rôle a été assigné.
+
+### Remarque :
+Assurez-vous que le rôle est géré de manière appropriée lors de l'authentification et de l'autorisation des utilisateurs dans votre application.

@@ -1,0 +1,22 @@
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Cours/JSP/tdChap2/td2exo3lib/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Cours/JSP/tdChap2/td2exo3lib/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'td2exo3lib 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'td2exo3lib 1.0-SNAPSHOT API'

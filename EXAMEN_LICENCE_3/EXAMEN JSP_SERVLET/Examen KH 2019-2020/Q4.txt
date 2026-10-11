@@ -1,0 +1,38 @@
+Pour afficher un tableau de chaînes de caractères nommé `options` sous forme de liste à puces dans une page JSP, vous pouvez utiliser une boucle `for` pour itérer sur chaque élément du tableau et le rendre dans une balise HTML `<ul>` (liste non ordonnée) avec des balises `<li>` (éléments de liste) pour chaque option. Voici un exemple de code JSP qui réalise cela :
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Déclaration d'un tableau de chaînes de caractères
+    String[] options = {"Option 1", "Option 2", "Option 3", "Option 4"};
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des options</title>
+</head>
+<body>
+    <h1>Options disponibles</h1>
+    <ul>
+        <%
+            // Boucle pour parcourir le tableau et afficher chaque option
+            for (String option : options) {
+        %>
+            <li><%= option %></li>
+        <%
+            }
+        %>
+    </ul>
+</body>
+</html>
+```
+
+### Explication du code :
+1. **Déclaration JSP** : `page` directive pour définir le langage et l'encodage.
+2. **Déclaration du tableau** : Le tableau `options` est déclaré et initialisé avec quelques valeurs.
+3. **HTML de base** : La structure de base de la page HTML est définie, y compris le titre et un en-tête.
+4. **Liste à puces** : Une balise `<ul>` est utilisée pour créer une liste non ordonnée.
+5. **Boucle `for`** : La boucle itère sur chaque élément du tableau `options`, et pour chaque élément, une balise `<li>` est créée pour afficher l'option.
+6. **Expression JSP** : `<%= option %>` est utilisé pour insérer la valeur de chaque option dans l'élément de liste.
+
+Ce code produira une liste à puces affichant les options disponibles sur la page JSP.

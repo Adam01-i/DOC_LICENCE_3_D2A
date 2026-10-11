@@ -1,0 +1,43 @@
+a. Servlet QCM.java
+Ce servlet affiche les questions de l'épreuve choisie et génère un formulaire pour répondre.
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class QCM extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String epreuve = request.getParameter("epreuve");
+
+            // Gestion de l'épreuve Algèbre (non disponible)
+            if ("Algèbre".equals(epreuve)) {
+                response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+                out.println("<h1>Page en construction</h1>");
+                return;
+            }
+
+            QuestionReponses qr = new QuestionReponses();
+            int nombreQuestions = qr.getNombreQuestion(epreuve);
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html><head><title>QCM</title></head><body>");
+            out.println("<h1>Épreuve : " + epreuve + "</h1>");
+            out.println("<form action=\"ResultatsQCM\" method=\"POST\">");
+
+            for (int i = 0; i < nombreQuestions; i++) {
+                out.println("<p>" + qr.getQuestion(epreuve, i) + "</p>");
+                out.println("<input type=\"text\" name=\"reponse" + i + "\" />");
+            }
+
+            out.println("<input type=\"hidden\" name=\"epreuve\" value=\"" + epreuve + "\" />");
+            out.println("<button type=\"submit\">Valider</button>");
+            out.println("</form></body></html>");
+        }
+    }
+}

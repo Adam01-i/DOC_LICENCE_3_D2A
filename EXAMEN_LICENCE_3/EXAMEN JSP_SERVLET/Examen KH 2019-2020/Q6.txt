@@ -1,0 +1,38 @@
+Pour déconnecter un utilisateur en utilisant EL (Expression Language) et JSTL (JavaServer Pages Standard Tag Library) dans une application web Java, il faut généralement invalidater la session de l'utilisateur et rediriger vers une page appropriée, comme une page de connexion ou une page d'accueil.
+
+Voici un exemple de code JSP qui montre comment faire cela :
+
+```jsp
+<%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+    // Vérifiez si l'utilisateur est connecté en fonction de l'attribut 'role'
+    if (session.getAttribute("role") != null) {
+        // Invalidate la session pour déconnecter l'utilisateur
+        session.invalidate();
+        
+        // Rediriger vers la page de connexion ou une autre page
+        response.sendRedirect("login.jsp");
+    } else {
+        // Si l'utilisateur n'est pas connecté, rediriger vers une autre page
+        response.sendRedirect("home.jsp");
+    }
+%>
+```
+
+### Explication :
+
+1. **Vérification de l'attribut `role`** :
+   - On vérifie si l'attribut `role` de la session est présent. Cela indique que l'utilisateur est connecté.
+
+2. **Invalidation de la session** :
+   - Si l'utilisateur est connecté, on appelle `session.invalidate()` pour détruire la session, ce qui déconnecte l'utilisateur.
+
+3. **Redirection** :
+   - Après l'invalidation de la session, on redirige l'utilisateur vers une page de connexion (`login.jsp`) ou une autre page appropriée.
+
+4. **Gestion du cas où l'utilisateur n'est pas connecté** :
+   - Si l'utilisateur n'est pas connecté, on le redirige vers une page d'accueil (`home.jsp`).
+
+Assurez-vous que les pages vers lesquelles vous redirigez existent et sont configurées correctement dans votre application.

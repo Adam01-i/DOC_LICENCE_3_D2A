@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="5.0" type="template" client="site" method="upgrade">
+    <name>asi_telecom_template</name>
+    <author>Scholar GPT</author>
+    <version>1.0</version>
+    <description>Template personnalisé pour ASI Telecom</description>
+    <files>
+        <filename>index.php</filename>
+        <filename>templateDetails.xml</filename>
+        <filename>css/style.css</filename>
+    </files>
+    <positions>
+        <position>menu</position>
+        <position>footer</position>
+    </positions>
+</extension>

@@ -1,0 +1,27 @@
+Pour transférer une requête à la page `connexion.jsp` en utilisant le langage EL (Expression Language) et JSP, vous pouvez utiliser la directive JSP `<c:if>` pour vérifier la présence du paramètre `action`. Voici comment vous pouvez le faire :
+
+1. **Lorsque la requête ne contient pas le paramètre `action` :**
+
+```jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${empty param.action}">
+    <jsp:forward page="connexion.jsp" />
+</c:if>
+```
+
+2. **Lorsque la requête contient le paramètre `action` :**
+
+```jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${not empty param.action}">
+    <jsp:forward page="connexion.jsp" />
+</c:if>
+```
+
+### Explication :
+- `param.action` : Cela fait référence au paramètre `action` de la requête.
+- `empty` : Cette fonction vérifie si le paramètre est vide (ou inexistant).
+- `not empty` : Cela vérifie si le paramètre est présent et non vide.
+- `<jsp:forward>` : Cela permet de transférer la requête à la page `connexion.jsp`.
+
+En résumé, le code ci-dessus redirige l'utilisateur vers `connexion.jsp` en fonction de la présence ou non du paramètre `action` dans la requête.

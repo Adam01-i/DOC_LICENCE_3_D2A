@@ -1,0 +1,21 @@
+Il semble que vous ayez partagé un extrait de code Java qui utilise des cookies dans un contexte JSP (JavaServer Pages). Voici une explication de ce code ligne par ligne :
+
+```java
+Cookie[] cookies = request.getCookies();
+```
+- Cette ligne déclare un tableau de `Cookie` appelé `cookies` et l'initialise avec la méthode `getCookies()` de l'objet `request`. Cela récupère tous les cookies envoyés par le navigateur dans la requête HTTP.
+
+```java
+int nbCookies = cookies != null ? cookies.length : 0;
+```
+- Ici, une variable entière `nbCookies` est déclarée. Elle est initialisée à la longueur du tableau `cookies` si ce dernier n'est pas nul (`cookies != null`). Si `cookies` est nul, cela signifie qu'aucun cookie n'a été envoyé, donc `nbCookies` est initialisé à 0.
+
+```java
+System.out.println("Le nombre de cookies reçus est " + nbCookies);
+```
+- Enfin, cette ligne imprime le nombre de cookies reçus sur la console. Elle utilise `System.out.println()` pour afficher un message qui inclut la valeur de `nbCookies`.
+
+### Résumé
+Le code vérifie combien de cookies ont été reçus dans une requête HTTP et affiche ce nombre. Si aucun cookie n'est présent, il affichera que le nombre de cookies reçus est 0. 
+
+Si vous avez des questions spécifiques sur une partie de ce code ou sur les cookies en général, n'hésitez pas à demander !

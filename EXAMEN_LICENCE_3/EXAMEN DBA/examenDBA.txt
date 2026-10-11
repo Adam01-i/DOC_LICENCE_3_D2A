@@ -1,0 +1,528 @@
+Microsoft Windows [version 10.0.19044.1766]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\ass>sqlplus /nolog
+
+SQL*Plus: Release 11.2.0.1.0 Production on Mar. Juil. 19 01:31:23 2022
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+SQL> connect sys /as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from rh.client;
+
+     NUMCL NOM
+---------- ----------
+         2 madiop
+         4 waly pape
+         6 ass
+         1 elhadji
+
+SQL> create user SCO
+  2  identified by scolarite
+  3  default tablespace users
+  4  temporary tablespace temp;
+
+Utilisateur crÚÚ.
+
+SQL> grant connect,resource to SCO;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> disconnect;
+DÚconnectÚ de Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+SQL> connect SCO;
+Entrez le mot de passe :
+ConnectÚ.
+SQL> create table(
+  2  ;
+create table(
+            *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> create table etudiant(
+  2  ident int,
+  3  nom varchar(30),
+  4  prenom varchar(30),
+  5  adresse varchar(30),
+  6  idclasse int,
+  7  constraint pk_etu  primary key (ident),
+  8  );
+)
+*
+ERREUR Ó la ligne 8 :
+ORA-00904:  : identificateur non valide
+
+
+SQL> create table etudiant(
+  2  ident int,
+  3  nom varchar(30),
+  4  prenom varchar(30),
+  5  adresse varchar(30),
+  6  idclasse int,
+  7  constraint pk_etu  primary key (ident));
+
+Table crÚÚe.
+
+SQL> create table classe(
+  2  idclasse int,
+  3  constraint pk_classe  primary key (idclasse),
+  4  nom varchar(15));
+
+Table crÚÚe.
+
+SQL> alter table etudiant add constraint fk_classe foreign key (idclasse) references  classe(idclasse));
+alter table etudiant add constraint fk_classe foreign key (idclasse) references  classe(idclasse))
+                                                                                                 *
+ERREUR Ó la ligne 1 :
+ORA-01735: option ALTER TABLE non valide
+
+
+SQL> alter table etudiant add constraint fk_classe foreign key (idclasse) references  classe(idclasse);
+
+Table modifiÚe.
+
+SQL> create role sylla_role;
+creatcreate role sylla_role;
+
+R¶le crÚÚ.a ligne 1 :
+ORA-01031: privilÞges insuffisants
+SQL> create role sylla_role;
+create role sylla_role
+            *
+ERREUR Ó la ligne 1 :
+ORA-01921: nom de r¶le 'SYLLA_ROLE' en conflit avec un autre nom utilisateur ou
+de r¶le
+
+
+SQL> set sylla_role;
+SP2-0158: option SET inconnue "sylla_role"
+SQL> set role sylla_role;
+
+R¶le dÚfini.
+
+SQL> grant select,insert,update on all to sylla_role;
+grant select,insert,update on all to sylla_role
+                              *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on SCO.* to sylla_role;
+grant select,insert,update on SCO.* to sylla_role
+                                  *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on etudiant,classe to sylla_role;
+grant select,insert,update on etudiant,classe to sylla_role
+                                      *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> grant select,insert,update on SCO.etudiant,SCO.classe to sylla_role;
+grant select,insert,update on SCO.etudiant,SCO.classe to sylla_role
+                                          *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> grant select,insert,update on SCO.etudiant SCO.classe to sylla_role;
+grant select,insert,update on SCO.etudiant SCO.classe to sylla_role
+                                           *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> grant select,insert,update on SCO.All to sylla_role;
+grant select,insert,update on SCO.All to sylla_role
+                                  *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on SCO. to sylla_role;
+grant select,insert,update on SCO. to sylla_role
+                                   *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on SCO. to sylla_role;
+grant select,insert,update on SCO. to sylla_role
+                                   *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on SCO to sylla_role;
+grant select,insert,update on SCO to sylla_role
+                              *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> grant select,insert,update on (SCO.etudiant,SCO.classe) to sylla_role;
+grant select,insert,update on (SCO.etudiant,SCO.classe) to sylla_role
+                              *
+ERREUR Ó la ligne 1 :
+ORA-00903: nom de table non valide
+
+
+SQL> grant select,insert,update on SCO.etudiant to sylla_role;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant select,insert,update on SCO.classe to sylla_role;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant sylla_role to RH;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> insert into classe(1,'d2a3');
+insert into classe(1,'d2a3')
+                   *
+ERREUR Ó la ligne 1 :
+ORA-00928: mot-clÚ SELECT absent
+
+
+SQL> insert into classe values(1,'d2a3');
+
+1 ligne crÚÚe.
+
+SQL> insert into etudiant values(1,'diop','madiop','malicounda',1);
+
+1 ligne crÚÚe.
+
+SQL> commit;
+
+Validation effectuÚe.
+
+SQL> audit all on default by access;
+audit all on default by access
+                             *
+ERREUR Ó la ligne 1 :
+ORA-01031: privilÞges insuffisants
+
+
+SQL> audit all on default by access;
+audit all on default by access
+                             *
+ERREUR Ó la ligne 1 :
+ORA-01031: privilÞges insuffisants
+
+
+SQL> audit all on default by access;
+
+Audit rÚussi.
+
+SQL> select action_name,username from dba_audit_trail where username='RH';
+select action_name,username from dba_audit_trail where username='RH'
+                                 *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select action_name,username from sys.dba_audit_trail where username='RH';
+select action_name,username from sys.dba_audit_trail where username='RH'
+                                     *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select action_name,username from sys.DBA_audit_trail where username='RH';
+select action_name,username from sys.DBA_audit_trail where username='RH'
+                                     *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> select action_name,username from dba_audit_trail where username='RH';
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+GRANT ROLE                   RH
+AUDIT DEFAULT                RH
+AUDIT DEFAULT                RH
+LOGON                        RH
+SET ROLE                     RH
+SET ROLE                     RH
+CREATE ROLE                  RH
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+INSERT                       RH
+INSERT                       RH
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+LOGON                        RH
+CREATE ROLE                  RH
+LOGOFF                       RH
+LOGOFF                       RH
+LOGOFF                       RH
+LOGOFF                       RH
+LOGOFF                       RH
+
+33 ligne(s) sÚlectionnÚe(s).
+
+SQL> select action_name,username from dba_audit_trail where username='RH' and owner='SCO';
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+
+SQL> select action_name from dba_audit_trail where username='RH';
+
+ACTION_NAME
+----------------------------
+GRANT ROLE
+AUDIT DEFAULT
+AUDIT DEFAULT
+LOGON
+SET ROLE
+SET ROLE
+CREATE ROLE
+SELECT
+SELECT
+SELECT
+SELECT
+
+ACTION_NAME
+----------------------------
+SELECT
+SELECT
+SELECT
+SELECT
+INSERT
+INSERT
+LOGON
+LOGON
+LOGON
+LOGON
+LOGON
+
+ACTION_NAME
+----------------------------
+LOGON
+LOGON
+LOGON
+LOGON
+LOGON
+CREATE ROLE
+LOGOFF
+LOGOFF
+LOGOFF
+LOGOFF
+LOGOFF
+
+33 ligne(s) sÚlectionnÚe(s).
+
+SQL> select action_name,username from dba_audit_trail where owner='SCO';
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+CREATE INDEX                 SCO
+CREATE INDEX                 SCO
+ALTER TABLE                  SCO
+GRANT OBJECT                 SCO
+GRANT OBJECT                 SCO
+SELECT                       RH
+INSERT                       SCO
+INSERT                       SCO
+SELECT                       RH
+SELECT                       RH
+
+10 ligne(s) sÚlectionnÚe(s).
+
+SQL> select action_name,username from dba_audit_trail where username='RH' and owner='SCO';
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+
+SQL> select action_name,username from dba_audit_trail where username='RH' and owner='SCO';
+
+ACTION_NAME                  USERNAME
+---------------------------- ------------------------------
+INSERT                       RH
+SELECT                       RH
+SELECT                       RH
+SELECT                       RH
+
+SQL> revoke insert,update on etudiant to RH;
+revoke insert,update on etudiant to RH
+                                 *
+ERREUR Ó la ligne 1 :
+ORA-00905: mot-clÚ absent
+
+
+SQL> revoke insert,update on etudiant from RH;
+revoke insert,update on etudiant from RH
+*
+ERREUR Ó la ligne 1 :
+ORA-01927: impossible de rÚvoquer (REVOKE) des privilÞges non accordÚs
+
+
+SQL> revoke insert,update on etudiant from sylla_role;
+
+Suppression de privilÞges (REVOKE) acceptÚe.
+
+SQL> revoke insert,update on classe from sylla_role;
+
+Suppression de privilÞges (REVOKE) acceptÚe.
+
+SQL>
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Microsoft Windows [version 10.0.19044.1766]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\ass>sqlplus /nolog
+
+SQL*Plus: Release 11.2.0.1.0 Production on Mar. Juil. 19 01:45:27 2022
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+SQL> connect sys /as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> grant create role to SCO;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> disconnect;
+DÚconnectÚ de Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+SQL> connect RH;
+Entrez le mot de passe :
+ConnectÚ.
+SQL> select * from SCO.etudiant;
+
+aucune ligne sÚlectionnÚe
+
+SQL> select * from SCO.etudiant;
+
+aucune ligne sÚlectionnÚe
+
+SQL> select * from SCO.etudiant;
+
+     IDENT NOM                            PRENOM
+---------- ------------------------------ ------------------------------
+ADRESSE                          IDCLASSE
+------------------------------ ----------
+         1 diop                           madiop
+malicounda                              1
+
+
+SQL> disconnect;
+DÚconnectÚ de Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+SQL> connect sys /as sysdba
+Entrez le mot de passe :
+ConnectÚ.
+SQL> grant audit any to SCO;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> grant audit system to SCO;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> select username,action_name from dba_audit_trail where username='sys';
+
+aucune ligne sÚlectionnÚe
+
+SQL> grant select on dba_audit_trail to SCO;
+
+Autorisation de privilÞges (GRANT) acceptÚe.
+
+SQL> disconnect
+DÚconnectÚ de Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+SQL> connect RH;
+Entrez le mot de passe :
+ConnectÚ.
+SQL> insert into classe values(2,'srt3');
+insert into classe values(2,'srt3')
+            *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> insert into SCO.classe values(2,'srt3');
+
+1 ligne crÚÚe.
+
+SQL> insert into classe values(2,'srt3');
+insert into classe values(2,'srt3')
+            *
+ERREUR Ó la ligne 1 :
+ORA-00942: Table ou vue inexistante
+
+
+SQL> insert into SCO.classe values(2,'srt3');
+insert into SCO.classe values(2,'srt3')
+*
+ERREUR Ó la ligne 1 :
+ORA-00001: violation de contrainte unique (SCO.PK_CLASSE)
+
+
+SQL> insert into SCO.classe values(3,'srt3');
+
+1 ligne crÚÚe.
+
+SQL> insert into SCO.classe values(4,'srt3');
+insert into SCO.classe values(4,'srt3')
+                *
+ERREUR Ó la ligne 1 :
+ORA-01031: privilÞges insuffisants
+
+
+SQL> select * from SCO.etudiant;
+
+     IDENT NOM                            PRENOM
+---------- ------------------------------ ------------------------------
+ADRESSE                          IDCLASSE
+------------------------------ ----------
+         1 diop                           madiop
+malicounda                              1
+
+
+SQL> select * from SCO.classe;
+
+  IDCLASSE NOM
+---------- ---------------
+         1 d2a3
+         2 srt3
+         3 srt3
+
+SQL>

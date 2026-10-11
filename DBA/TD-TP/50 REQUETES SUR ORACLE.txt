@@ -1,0 +1,352 @@
+1. Requêtes de base (SELECT simples)
+Afficher tous les clients et leurs informations :
+
+SELECT * FROM client;
+Afficher toutes les commandes passées après le 1er janvier 2023 :
+
+SELECT * FROM commande WHERE dateCom > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+Lister les produits avec un idProduit impair :
+
+SELECT * FROM produit WHERE MOD(idProduit, 2) = 1;
+Lister toutes les commandes ayant au moins une ligne de commande avec une quantité supérieure à 300 :
+
+SELECT DISTINCT idCom FROM ligneCom WHERE qteCom > 300;
+Afficher les clients habitant à "Dakar" :
+
+SELECT * FROM client WHERE adrClient = 'Dakar';
+
+
+
+2. Jointures entre les tables
+Lister les noms des clients ayant passé au moins une commande :
+
+SELECT DISTINCT c.nomClient, c.prenomClient 
+FROM client c 
+JOIN commande co ON c.idClient = co.idClient;
+Afficher les commandes et leurs détails (produits et quantités commandées) :
+
+SELECT co.idCom, co.dateCom, p.nomProduit, lc.qteCom 
+FROM commande co 
+JOIN ligneCom lc ON co.idCom = lc.idCom
+JOIN produit p ON lc.idProduit = p.idProduit;
+Lister les clients ayant commandé le produit "Bouye" :
+
+SELECT DISTINCT c.nomClient, c.prenomClient 
+FROM client c 
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+JOIN produit p ON lc.idProduit = p.idProduit
+WHERE p.nomProduit = 'Bouye';
+Trouver les commandes passées par "Aminata Ka" :
+
+SELECT co.* 
+FROM commande co
+JOIN client c ON co.idClient = c.idClient
+WHERE c.nomClient = 'Ka' AND c.prenomClient = 'Aminata';
+Afficher toutes les lignes de commande, triées par produit :
+
+SELECT lc.*, p.nomProduit 
+FROM ligneCom lc 
+JOIN produit p ON lc.idProduit = p.idProduit
+ORDER BY p.nomProduit;
+3. Agrégations et regroupements
+Compter le nombre total de commandes passées :
+
+SELECT COUNT(*) AS total_commandes FROM commande;
+Calculer la quantité totale commandée pour chaque produit :
+
+SELECT p.nomProduit, SUM(lc.qteCom) AS total_quantite
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit;
+Lister les clients ayant passé plus d'une commande :
+
+SELECT c.nomClient, c.prenomClient, COUNT(co.idCom) AS nb_commandes
+FROM client c 
+JOIN commande co ON c.idClient = co.idClient
+GROUP BY c.nomClient, c.prenomClient
+HAVING COUNT(co.idCom) > 1;
+Trouver la commande avec la plus grande quantité totale :
+
+SELECT idCom, SUM(qteCom) AS total_quantite
+FROM ligneCom
+GROUP BY idCom
+ORDER BY total_quantite DESC
+FETCH FIRST 1 ROWS ONLY;
+Trouver le produit le plus commandé :
+
+SELECT p.nomProduit, SUM(lc.qteCom) AS total_quantite
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit
+ORDER BY total_quantite DESC
+FETCH FIRST 1 ROWS ONLY;
+4. Sous-requêtes
+Trouver les clients n'ayant jamais passé de commande :
+
+SELECT * 
+FROM client 
+WHERE idClient NOT IN (SELECT idClient FROM commande);
+Lister les produits qui n'ont jamais été commandés :
+
+SELECT * 
+FROM produit 
+WHERE idProduit NOT IN (SELECT idProduit FROM ligneCom);
+Trouver les commandes passées après la première commande :
+
+SELECT * 
+FROM commande 
+WHERE dateCom > (SELECT MIN(dateCom) FROM commande);
+Lister les commandes ayant au moins deux lignes de commande :
+
+SELECT idCom 
+FROM ligneCom 
+GROUP BY idCom
+HAVING COUNT(numeroLigne) >= 2;
+Afficher les clients ayant commandé "Ditakh" :
+
+SELECT * 
+FROM client 
+WHERE idClient IN (
+    SELECT co.idClient
+    FROM commande co
+    JOIN ligneCom lc ON co.idCom = lc.idCom
+    JOIN produit p ON lc.idProduit = p.idProduit
+    WHERE p.nomProduit = 'Ditakh'
+);
+5. DDL et DML
+Ajouter une colonne telephone à la table client :
+
+ALTER TABLE client ADD telephone VARCHAR2(15);
+Supprimer une colonne adrClient de la table client :
+
+ALTER TABLE client DROP COLUMN adrClient;
+Insérer un nouveau produit dans la table produit :
+
+INSERT INTO produit VALUES (06, 'Baobab', 1600);
+Supprimer toutes les lignes de commande pour le produit "Bissap" :
+
+DELETE FROM ligneCom
+WHERE idProduit = (SELECT idProduit FROM produit WHERE nomProduit = 'Bissap');
+Mettre à jour l'adresse de "Fatou Dia" à "Saint-Louis" :
+
+UPDATE client 
+SET adrClient = 'Saint-Louis'
+WHERE nomClient = 'Dia' AND prenomClient = 'Fatou';
+6. Scénarios complexes
+Afficher le chiffre d'affaires total pour chaque produit (prix * quantité) :
+
+SELECT p.nomProduit, SUM(lc.qteCom * p.prix) AS chiffre_affaires
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit;
+Trouver le client ayant dépensé le plus :
+
+SELECT c.nomClient, c.prenomClient, SUM(lc.qteCom * p.prix) AS total_depense
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+JOIN produit p ON lc.idProduit = p.idProduit
+GROUP BY c.nomClient, c.prenomClient
+ORDER BY total_depense DESC
+FETCH FIRST 1 ROWS ONLY;
+Trouver les commandes sans lignes de commande associées :
+
+SELECT * 
+FROM commande 
+WHERE idCom NOT IN (SELECT idCom FROM ligneCom);
+...
+
+Souhaitez-vous que je développe les 22 restantes ? 😊
+
+
+
+
+
+Vous avez dit :
+oui
+ChatGPT a dit :
+7. Suite des scénarios complexes
+Trouver le produit qui a été commandé par le plus grand nombre de clients :
+
+SELECT p.nomProduit, COUNT(DISTINCT co.idClient) AS nb_clients
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+JOIN commande co ON lc.idCom = co.idCom
+GROUP BY p.nomProduit
+ORDER BY nb_clients DESC
+FETCH FIRST 1 ROWS ONLY;
+Lister les clients ayant passé leur première commande en 2023 :
+
+SELECT c.* 
+FROM client c
+WHERE c.idClient IN (
+    SELECT co.idClient
+    FROM commande co
+    GROUP BY co.idClient
+    HAVING MIN(co.dateCom) >= TO_DATE('2023-01-01', 'YYYY-MM-DD')
+       AND MIN(co.dateCom) <= TO_DATE('2023-12-31', 'YYYY-MM-DD')
+);
+Trouver la commande avec le plus de lignes de commande :
+
+SELECT idCom, COUNT(*) AS nb_lignes
+FROM ligneCom
+GROUP BY idCom
+ORDER BY nb_lignes DESC
+FETCH FIRST 1 ROWS ONLY;
+Trouver le client ayant commandé le plus grand nombre de produits différents :
+
+SELECT c.nomClient, c.prenomClient, COUNT(DISTINCT lc.idProduit) AS nb_produits
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+GROUP BY c.nomClient, c.prenomClient
+ORDER BY nb_produits DESC
+FETCH FIRST 1 ROWS ONLY;
+Lister les clients n'ayant commandé que des produits dont le nom commence par "B" :
+
+SELECT DISTINCT c.idClient, c.nomClient, c.prenomClient
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+JOIN produit p ON lc.idProduit = p.idProduit
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM ligneCom lc2
+    JOIN produit p2 ON lc2.idProduit = p2.idProduit
+    WHERE p2.nomProduit NOT LIKE 'B%' AND lc2.idCom = co.idCom
+);
+Trouver les clients ayant passé une commande avec au moins 3 lignes différentes :
+
+SELECT DISTINCT c.idClient, c.nomClient, c.prenomClient
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+GROUP BY c.idClient, c.nomClient, c.prenomClient, co.idCom
+HAVING COUNT(lc.idProduit) >= 3;
+Lister les commandes où le total des quantités commandées dépasse 500 :
+
+SELECT idCom, SUM(qteCom) AS total_qte
+FROM ligneCom
+GROUP BY idCom
+HAVING SUM(qteCom) > 500;
+Trouver les produits qui n'ont été commandés que dans des commandes ayant une date en 2023 :
+
+SELECT p.nomProduit
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+JOIN commande co ON lc.idCom = co.idCom
+GROUP BY p.nomProduit
+HAVING MIN(co.dateCom) >= TO_DATE('2023-01-01', 'YYYY-MM-DD')
+   AND MAX(co.dateCom) <= TO_DATE('2023-12-31', 'YYYY-MM-DD');
+Calculer la quantité totale commandée par chaque client :
+
+SELECT c.nomClient, c.prenomClient, SUM(lc.qteCom) AS total_qte
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+JOIN ligneCom lc ON co.idCom = lc.idCom
+GROUP BY c.nomClient, c.prenomClient;
+Lister les produits ayant été commandés exactement une fois :
+
+SELECT p.nomProduit
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit
+HAVING COUNT(*) = 1;
+8. Requêtes liées aux contraintes
+Ajouter une contrainte de vérification pour s'assurer que la quantité commandée est toujours positive :
+
+ALTER TABLE ligneCom ADD CONSTRAINT chk_qte_positive CHECK (qteCom > 0);
+Ajouter une contrainte d'unicité sur le nom des produits :
+
+ALTER TABLE produit ADD CONSTRAINT uq_nom_produit UNIQUE (nomProduit);
+Supprimer la contrainte fk_commande dans la table ligneCom :
+
+ALTER TABLE ligneCom DROP CONSTRAINT fk_commande;
+Renommer la contrainte pk_client dans la table client :
+
+ALTER TABLE client RENAME CONSTRAINT pk_client TO pk_idClient;
+9. Requêtes avancées
+Trouver le client ayant passé la commande la plus ancienne :
+
+SELECT c.nomClient, c.prenomClient
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+WHERE co.dateCom = (SELECT MIN(dateCom) FROM commande);
+Lister les commandes contenant le produit le moins commandé :
+
+SELECT lc.idCom
+FROM ligneCom lc
+WHERE lc.idProduit = (
+    SELECT idProduit
+    FROM ligneCom
+    GROUP BY idProduit
+    ORDER BY SUM(qteCom) ASC
+    FETCH FIRST 1 ROWS ONLY
+);
+Afficher les clients ayant passé au moins une commande pour chaque produit disponible :
+
+SELECT c.idClient, c.nomClient, c.prenomClient
+FROM client c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM produit p
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM commande co
+        JOIN ligneCom lc ON co.idCom = lc.idCom
+        WHERE lc.idProduit = p.idProduit AND co.idClient = c.idClient
+    )
+);
+Calculer la moyenne des quantités commandées par produit :
+
+SELECT p.nomProduit, AVG(lc.qteCom) AS avg_qte
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit;
+Afficher les commandes où tous les produits commandés ont une quantité supérieure à 100 :
+
+SELECT idCom
+FROM ligneCom
+GROUP BY idCom
+HAVING MIN(qteCom) > 100;
+Trouver les produits commandés par exactement deux clients différents :
+
+SELECT p.nomProduit
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+JOIN commande co ON lc.idCom = co.idCom
+GROUP BY p.nomProduit
+HAVING COUNT(DISTINCT co.idClient) = 2;
+Lister les produits qui représentent au moins 50% des quantités commandées dans une commande :
+
+SELECT p.nomProduit, lc.idCom
+FROM produit p
+JOIN ligneCom lc ON p.idProduit = lc.idProduit
+GROUP BY p.nomProduit, lc.idCom
+HAVING SUM(lc.qteCom) >= 0.5 * (
+    SELECT SUM(qteCom)
+    FROM ligneCom
+    WHERE idCom = lc.idCom
+);
+Trouver les clients ayant passé exactement une commande avec plusieurs lignes :
+
+SELECT c.nomClient, c.prenomClient
+FROM client c
+JOIN commande co ON c.idClient = co.idClient
+WHERE co.idCom IN (
+    SELECT idCom
+    FROM ligneCom
+    GROUP BY idCom
+    HAVING COUNT(*) > 1
+)
+AND c.idClient NOT IN (
+    SELECT idClient
+    FROM commande
+    WHERE idCom NOT IN (
+        SELECT idCom
+        FROM ligneCom
+        GROUP BY idCom
+        HAVING COUNT(*) > 1
+    )
+);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?PowerDesigner signature="Workspace" version="15.1.0.2850"?>
+<!-- Veuillez ne pas modifier ce fichier -->
+
+<Workspace>
+	<Local Expanded="Yes">
+		<Model ID="{62BFF30B-7D32-44C0-AAE4-DAF0B08CEA89}" Loaded="No" Name="MOO1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="MOO1.moo"/>
+		<Model ID="{271171AB-F41B-473F-8706-A8D2AE44400A}" Loaded="No" Name="DCU2" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="MOO2.moo"/>
+		<Model ID="{DA8B7749-15B0-4698-AA63-B11D402B68FE}" Loaded="No" Name="DDC1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="DDC1.moo"/>
+		<Model Expanded="Yes" ID="{BD8181A4-9D0A-46E5-B3DB-9FD036C0F109}" Loaded="No" Name="ModeleOrienteObjet_2" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../DIAGRAMME D&#39;UTILISATION VERSION 2.moo"/>
+		<Model Expanded="Yes" ID="{A893DD6A-0C03-4BF0-848B-157B37BC9146}" Loaded="No" Name="diagramme" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="diagramme_deClasse[1]TP1.moo"/>
+		<Model Expanded="Yes" ID="{0E842B0A-4FDD-4992-A279-81664A69ED23}" Loaded="No" Name="DDCLASSEnewVer" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="DDCLASSEnewVer.moo"/>
+		<Model Expanded="Yes" ID="{A893DD6A-0C03-4BF0-848B-157B37BC9146}" Name="diagramme" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="diagramme_deClasse[1]TP1.moo"/>
+	</Local>
+</Workspace>

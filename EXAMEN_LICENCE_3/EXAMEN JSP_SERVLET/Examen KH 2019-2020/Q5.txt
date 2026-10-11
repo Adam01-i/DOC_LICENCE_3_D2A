@@ -1,0 +1,41 @@
+Pour afficher un tableau de chaînes de caractères sous forme de liste à puces dans une page JSP en utilisant l'Expression Language (EL), vous pouvez suivre ces étapes :
+
+1. Assurez-vous que le tableau `options` est disponible dans le contexte de la requête ou de la session. Par exemple, vous pouvez le mettre dans la portée de la requête dans un servlet avant de rediriger vers la page JSP :
+
+```java
+String[] options = {"Option 1", "Option 2", "Option 3"};
+request.setAttribute("options", options);
+request.getRequestDispatcher("votrePage.jsp").forward(request, response);
+```
+
+2. Dans votre page JSP (`votrePage.jsp`), vous pouvez utiliser EL pour accéder au tableau et le parcourir. Voici un exemple de code JSP :
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Liste d'options</title>
+</head>
+<body>
+    <h1>Options disponibles</h1>
+    <ul>
+        <c:forEach var="option" items="${options}">
+            <li>${option}</li>
+        </c:forEach>
+    </ul>
+</body>
+</html>
+```
+
+Dans cet exemple :
+
+- Nous utilisons la balise `<c:forEach>` de la bibliothèque JSTL (JavaServer Pages Standard Tag Library) pour itérer sur le tableau `options`.
+- Chaque élément du tableau est accessible via la variable `option`, qui est affichée dans une balise `<li>` pour créer une liste à puces.
+
+Assurez-vous d’inclure la bibliothèque JSTL dans votre projet JSP si ce n’est pas déjà fait :
+
+```xml
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+```
+
+Cela vous permettra d'utiliser la balise `<c:forEach>` pour itérer facilement sur le tableau et créer la liste à puces souhaitée.

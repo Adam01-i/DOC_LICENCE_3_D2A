@@ -1,0 +1,103 @@
+1- Identifier les différentes infractions commit par ABDOU : 
+Paragraphe 1:
+	1-Forcer a entrer dans le dispositif de sécurité du système informatique(Acce frauduleux)
+	2-Rester dans le systeme informatique(Maintient frauduleux)
+	3-Accee a la boite mail Professionnel(Les atteintes à la confidentialité des données informatiques)
+
+Paragraphe 2:
+	1-Obtenu et recopié les données commerciales(vol d'inf)
+	2-Transmis ces informations au responsable(atteite a la confidentialite m des donnes inform)
+
+Paragraphe 3:atteintes à l’intégrité des systèmes informatiques
+	1-il a envoyé un mail bombing (envoi massif de courriels) qui provoque une perturbation du système informatique: Les 
+Ces atteintes prévues par l’article 431-10 Code pénal Sénégalais
+« Celui qui entrave ou fausse ou  tenté d’entraver ou de fausser le fonctionnement d’un système informatique est puni d’un emprisonnement d’un (1) an à cinq (5) ans et d’une amende de 5.000.000 à 10.000.000 francs ». (virus, informatique, chevaux de Troie…). 
+
+	2-L'envoi du mail bombing qui provoque un fort de ralentissement du système informatique
+
+Paragraphe 4: atteite a la moralite d'un mineur et difussion de donnes a caractere personnelle, risque d'exploitation sexels des mineurs, 
+	1-Demande à la jeune dame de lui envoyer une vidéo d'elle dénudé
+	2-Le fait de a vidéo de la jeune dame reçue
+	3-Diffusion de la vidéo sur les réseaux sociaux.
+
+2- Les anctions prévues pour chaque infraction identifiée dans le paragraphe 1
+
+Pour l'infraction 1 : Abdou a fait un Accès frauduleux dans le système informatique : Conformément aux articles 431-8 et 431-9 du Code pénal sénégalais :
+			Peine : 6 mois à 3 ans d'emprisonnement et/ou 1 000 000 à 10 000 000 francs CFA d'amende.
+
+Pour l'infraction 2 : Abdou a fait un Maintient frauduleux dans le système informatique : Conformément aux articles 431-8 et 431-9 du Code pénal sénégalais :
+			Peine : 6 mois à 3 ans d'emprisonnement et/ou 1 000 000 à 10 000 000 francs CFA d'amende.
+
+Pour l'infraction 3 : Les atteintes à la confidentialité des données informatiques
+			La confidentialité des données est garantie par le délit d’interception frauduleuse de données informatisées prévu par l’article 431-12 
+			de loi n°2016-29 modifiant la loi n°65-60 du 21 juillet 1965 portant code pénal. "Celui qui intercepter ou tente d'intercepter frauduleusement 
+			des données informatiques lors de leur transmission non publique à destination, en provenance ou à l'intérieur d'un  système informatique 
+			est puni d'un emprisonnement d'un an à cinq ans et une amende de 5.000.000 de francs à 10.000.000 de francs ou de l'une des ces peines »
+
+3. Donner la définition des infractions identifiées dans le paragraphe 2:
+
+Les infraction 1 & 2 : C'est du vol d’information : L'article 431-58 du Code pénal a consacré la théorie du vol d’information. Selon ce texte : « Celui qui a copié 
+			frauduleusement des données informatiques qui ne lui appartient pas est puni d'un emprisonnement de six mois  à deux ans et une amende 
+			de 250.000 de francs à 1.000.000 de
+  
+
+
+
+
+
+
+	CORRECTION : 
+Paragraphe 1:
+	- Accee Frauduleux
+	- Violation du secret des correspondances
+	- Porte atteinte a la confidentialite des donnees
+Paragraphe 2:
+	- Vol informatique
+ 	- Recele d'information
+Paragraphe 3: 
+	- Atteintes à l’intégrité des systèmes informatiques(431-10)
+	- Atteintes à la disponibilite des systèmes informatiques(431-11)	-
+Paragraphe 4: 
+	- Risque d'exploitation sexuels des mineurs(431-34)
+	- Mise a disposition de videos pedopornographiques(431-35)
+
+
+
+Analyse du cas pratique :
+1. Infractions commises par Abdou :
+a. Infractions liées au système informatique :
+Accès frauduleux : Abdou a forcé le dispositif de sécurité du système informatique de la société "ISDD-BUSINESS".
+Maintien frauduleux : Il est resté connecté et a accédé à des données commerciales non autorisées.
+Entrave au fonctionnement : Abdou a envoyé un mail bombing, ce qui a perturbé le système informatique pendant 48 heures.
+b. Infractions liées aux données informatiques :
+Vol d’informations : Il a copié les données commerciales sans autorisation.
+Recel d’informations : Il a transmis ces données à une autre entreprise contre une rémunération.
+c. Infractions à caractère moral et social :
+Corruption de mineur : Abdou a demandé à une mineure de 15 ans de lui envoyer une vidéo d’elle dénudée.
+Diffusion de contenu pédopornographique : Il a partagé la vidéo sur les réseaux sociaux.
+Sanctions prévues pour chaque infraction :
+Accès et maintien frauduleux :
+
+Articles 431-8 et 431-9 du Code pénal sénégalais : Punissable d’un emprisonnement de 1 à 5 ans et d’une amende de 5 000 000 à 10 000 000 FCFA.
+Entrave au fonctionnement :
+
+Article 431-10 : Emprisonnement de 1 à 5 ans et une amende de 5 000 000 à 10 000 000 FCFA.
+Vol et recel d’informations :
+
+Vol d’information (Article 431-58) : Emprisonnement de 6 mois à 2 ans et une amende de 250 000 à 1 000 000 FCFA.
+Recel d’information : Peines similaires.
+Corruption de mineur :
+
+Article 431-7 : Solliciter une image sexuellement explicite d’un mineur est punissable d’un emprisonnement de 5 à 10 ans et d’une amende de 10 000 000 à 20 000 000 FCFA.
+Diffusion de contenu pédopornographique :
+
+Articles 431-34 à 431-36 : Punissable de 5 à 10 ans d’emprisonnement et d’une amende de 10 000 000 à 20 000 000 FCFA.
+Définitions des infractions identifiées :
+Accès frauduleux : Intrusion non autorisée dans un système informatique via des techniques illégales.
+Maintien frauduleux : Prolongation de la connexion à un système après un accès initial légitime ou non.
+Entrave au fonctionnement : Acte visant à ralentir ou paralyser un système informatique.
+Vol d’information : Copie ou appropriation non autorisée de données informatiques appartenant à un tiers.
+Recel d’information : Détention ou utilisation de données obtenues de manière illégale.
+Corruption de mineur : Sollicitation ou manipulation d’un mineur pour des activités sexuelles ou des contenus explicites.
+Diffusion de contenu pédopornographique : Partage ou mise à disposition de contenu sexuellement explicite impliquant des mineurs.
+Si vous souhaitez une rédaction détaillée pour un document, je peux élaborer une réponse complète et structurée. Voulez-vous que je le fasse ?

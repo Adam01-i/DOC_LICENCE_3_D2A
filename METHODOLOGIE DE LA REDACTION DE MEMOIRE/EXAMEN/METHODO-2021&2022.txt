@@ -1,0 +1,114 @@
+Votre document contient des examens portant sur la méthodologie et les techniques
+d'expression en Licence 3 SRT (Sciences et Techniques de l'Information et de la 
+Communication) pour les années 2021 et 2022 à l'Université Alioune Diop de Bambey. Voici une synthèse des questions abordées et des pistes de solutions :
+
+### **Questions fréquemment posées et solutions potentielles :**
+
+#### **Examen 2021 :**
+I. **Questions Vrai/Faux (8 points)**  
+   - Exemple : 
+	1-Dans la presentation de l'entreprise, il faut :
+     a- Donner son secteur d'activite? 
+     - Repone : VRAI: Le secteur d’activité permet de situer l’entreprise dans son 
+		environnement économique.
+     
+     b- Parler des difficultés financières de l'entreprise? 
+     - Réponse : FAUX: Les difficultés financières ne sont pas essentielles dans une 
+		présentation générale de l'entreprise.  
+     
+     c- Parler des personnels?
+	-respone : VRAI: Présenter brièvement les effectifs et l’organisation du 
+		personnel est pertinent dans ce contexte
+     
+     d- Définir la problématique?
+     - Réponse : FAUX: La problématique appartient à l'introduction du rapport et 
+		non à la présentation de l'entreprise.  
+
+
+	2- Dans la conclusion d'un rapport de stage, il faut: 
+     a- Dire ce que l'on a appris?
+     - Reponse : VRAI: La conclusion doit inclure les compétences acquises et 
+		les leçons tirées du stage.
+
+     c- Donner l'orientation du thème dans la conclusion.  
+     - Réponse : VRAI: Cela permet de montrer comment le sujet étudié peut évoluer 
+		ou être approfondi.
+
+     d- Apprécier le maître de stage?	
+     - Reponse : VRAI: Cela montre de la reconnaissance et témoigne d'une bonne relation 
+		avec le maître de stage.
+
+     e- Parler de la surface occupée par l'entreprise?
+     - Reponse : FAUX: Cette information est inutile dans la conclusion d’un rapport de stage.
+
+II. **Quelle est la page qui suit le sommaire dans un rapport de stage ? (3 points)**  
+   - Réponse : *L'introduction ou éventuellement la liste des abréviations*.  
+
+III. **Organise et complète la structure d’une note bibliographique : (3 points)**  
+   - Structure correcte :  
+     Prénom, NOM. *Titre de l’ouvrage*. Édition (s’il y a lieu), Ville d’édition :
+ 	Maison d’édition, Année.  
+
+IV. **Définir les termes kinémimes, pictomimes et proxémique en communication 
+	(6 points)**  
+   - **Kinémimes** : Gestes qui remplacent ou accompagnent la parole 
+		(ex. les mouvements de la main pour indiquer une direction).  
+   - **Pictomimes** : Représentations graphiques ou symboles utilisés dans la 
+	communication (ex. panneaux de signalisation).  
+   - **Proxémique** : Étude de l’usage des distances dans les interactions sociales
+ (ex. distance intime, sociale).
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+#### **Examen 2022 :**
+1. **Établis une page Errata de 4 lignes (4 points)**  
+   - Exemple de page Errata :  
+     - **ERRATA**  
+     - Page 10, ligne 5 : Lire *« communication verbale »* au lieu de *« communication orale »*.  
+     - Page 15, paragraphe 2 : Supprimer le mot *« clairement »*.  
+
+2. **Structure d’une note bibliographique (3 points)**  
+   - Même réponse que pour 2021.
+
+3. **Quelle est la page qui suit la réplique de la page de garde ? (3 points)**  
+   - Réponse : *La dédicace ou les remerciements (parfois une liste des abréviations si elle est prévue).*  
+
+4. **Cite quatre étapes dans l’introduction d’un rapport de stage (4 points)**  
+   - Réponse :  
+     1. Contexte et justification du stage.  
+     2. Présentation de l’entreprise ou organisation.  
+     3. Problématique ou question de recherche.  
+     4. Objectifs du stage.  
+
+5. **Quels sont les signes non verbaux les plus connus et leurs particularités ? (6 points)**  
+   - **Exemples** :  
+     - Expressions faciales : transmettent des émotions (joie, colère).  
+     - Gestes : peuvent compléter ou remplacer les mots (hochements de tête).  
+     - Posture : reflète l’attitude ou l’état émotionnel.  
+     - Contact visuel : montre l’attention et l’intérêt.  
+
+6. **Quels sont les facteurs de la communication ? (6 points)**  
+   - Réponse classique :  
+     1. **Émetteur** : celui qui initie le message.  
+     2. **Récepteur** : celui qui reçoit le message.  
+     3. **Message** : le contenu de la communication.  
+     4. **Canal** : le moyen de transmission (écrit, oral, visuel).  
+     5. **Code** : langage utilisé (verbal, non-verbal).  
+     6. **Contexte** : environnement dans lequel se déroule la communication.  
+
+---
+
+### **Suggestions de questions potentielles :**
+1. Quels sont les éléments essentiels d’une conclusion dans un rapport de stage ?
+2. Comment rédiger une liste d’abréviations dans un rapport ?
+3. Donnez une définition des types de communication (verbale, non verbale, écrite).
+4. Comment évaluer la réussite d’une communication en entreprise ?
+5. Quels sont les obstacles les plus fréquents dans la communication interpersonnelle ?  
+
+Si vous souhaitez approfondir certains aspects ou des solutions spécifiques, faites-moi savoir !

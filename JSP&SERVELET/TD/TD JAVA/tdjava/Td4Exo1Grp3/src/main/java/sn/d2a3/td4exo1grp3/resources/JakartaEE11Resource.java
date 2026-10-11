@@ -1,0 +1,20 @@
+package sn.d2a3.td4exo1grp3.resources;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Response;
+
+/**
+ *
+ * @author 
+ */
+@Path("jakartaee11")
+public class JakartaEE11Resource {
+    
+    @GET
+    public Response ping(){
+        return Response
+                .ok("ping Jakarta EE")
+                .build();
+    }
+}

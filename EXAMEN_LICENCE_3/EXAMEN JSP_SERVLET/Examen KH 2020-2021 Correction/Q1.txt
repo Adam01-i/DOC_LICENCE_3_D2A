@@ -1,0 +1,49 @@
+Pour récupérer la valeur du cookie `JSESSIONID` dans une requête HTTP en Java, vous pouvez utiliser l'API Servlets. Voici un exemple de code qui montre comment extraire le cookie `JSESSIONID` à partir d'une requête HTTP :
+
+```java
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServlet;
+import java.io.IOException;
+
+public class MonServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Récupérer tous les cookies de la requête
+        Cookie[] cookies = request.getCookies();
+        String jsessionId = null;
+
+        // Vérifier si les cookies ne sont pas null
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                // Vérifier si le cookie est JSESSIONID
+                if ("JSESSIONID".equals(cookie.getName())) {
+                    jsessionId = cookie.getValue();
+                    break; // On a trouvé le JSESSIONID, on peut sortir de la boucle
+                }
+            }
+        }
+
+        // Utiliser la valeur de JSESSIONID
+        if (jsessionId != null) {
+            response.getWriter().println("La valeur de JSESSIONID est : " + jsessionId);
+        } else {
+            response.getWriter().println("Le cookie JSESSIONID n'a pas été trouvé.");
+        }
+    }
+}
+```
+
+### Explication du code :
+
+1. **Servlet Class** : Le code définit une classe `MonServlet` qui étend `HttpServlet`.
+2. **doGet() Method** : La méthode `doGet()` est utilisée pour traiter les requêtes GET.
+3. **Récupération des Cookies** : La méthode `request.getCookies()` retourne un tableau de tous les cookies associés à la requête.
+4. **Recherche du Cookie JSESSIONID** : On parcourt le tableau de cookies pour trouver celui qui a le nom `JSESSIONID`.
+5. **Affichage de la valeur** : Une fois trouvé, la valeur du cookie est affichée dans la réponse.
+
+### Remarques :
+- Assurez-vous d'importer les bonnes classes pour travailler avec les servlets.
+- Ce code doit être exécuté dans un environnement de serveur web Java (comme Apache Tomcat, Jetty, etc.) qui supporte les Servlets.
+- N'oubliez pas de gérer les exceptions selon vos besoins, en particulier pour des applications de production.

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accueil QCM</title>
+</head>
+<body>
+    <h1>Bienvenue au QCM</h1>
+    <form action="QCM" method="GET">
+        <label for="epreuve">Choisissez une épreuve :</label>
+        <select name="epreuve" id="epreuve">
+            <option value="Réseaux">Réseaux</option>
+            <option value="SGBD">SGBD</option>
+            <option value="Algèbre">Algèbre</option>
+        </select>
+        <br><br>
+        <button type="submit">Commencer</button>
+    </form>
+</body>
+</html>
